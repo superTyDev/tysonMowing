@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tyson Mowing</title>
+
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+			/* Full Screen Nav */
+			html {
+				height: 100%;
+			}
+			body {
+				background: linear-gradient(rgb(0, 0, 109), rgb(30, 30, 255));
+				background-image: url("/imgs/lawn.jpg");
+				background-size: cover;
+
+				margin: 0px;
+				height: 100%;
+				overflow: hidden;
+				transition: all 0.5s ease-in-out;
+				perspective: 2000px;
+				font-family: "Raleway", sans-serif;
+
+				display: flex;
+				align-items: stretch;
+				justify-content: space-between;
+			}
+			body.expand-nav {
+				padding: 60px;
+				height: calc(100% - 120px);
+			}
+			.page-left,
+			.page-right {
+				transition: all 0.5s ease-in-out;
+				flex: 0;
+				box-shadow: 5px 5px 15px 3px #00000055;
+			}
+			.page-right {
+				width: 0;
+				min-width: 0;
+			}
+			.page-right hr {
+				border: 1px solid black;
+			}
+			.page-right a {
+				display: block;
+				text-decoration: none;
+				color: black;
+				padding: 10px 15px;
+				font-size: 20px;
+			}
+			.page-right a:hover {
+				background-color: #ffffff55;
+			}
+			.page-left {
+				background-color: yellowgreen;
+				flex: 1;
+			}
+			body.expand-nav .page-left {
+				transform: rotateY(8deg);
+			}
+			body.expand-nav .page-right {
+				transform: rotateY(-20deg);
+				background-color: #ffffff22;
+				min-width: 20%;
+				padding: 20px;
+			}
+			body.expand-nav .page-right:hover {
+				background-color: #ffffff66;
+			}
+			#closeMenu {
+				display: none;
+				float: right;
+				padding: 20px;
+				border-radius: 50%;
+			}
+			#closeMenu:hover {
+				background-color: #ffffff66;
+			}
+
+			/* NAVBAR */
+			nav {
+				width: 100%;
+				background-color: #ffffff88;
+				line-height: 60px;
+				vertical-align: middle;
+				font-size: 20px;
+				position: fixed;
+			}
+			nav h1 {
+				font-size: inherit;
+				display: inline;
+			}
+			nav a {
+				padding: 0 20px;
+				float: right;
+				text-decoration: none;
+				color: black;
+			}
+			nav a:hover {
+				background-color: #ffffffee;
+			}
+			nav #logo {
+				float: left;
+			}
+
+			/* Main page */
+			main {
+				margin-top: 50px;
+				padding: 20px;
+			}
+
+			@media (max-width: 768px) {
+				body.expand-nav .page-right {
+					position: fixed;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					width: calc(100% - 40px);
+					background-color: rgb(108, 150, 24);
+					transform: none;
+				}
+				body.expand-nav .page-right:hover {
+					background-color: rgb(108, 150, 24);
+				}
+				#closeMenu {
+					display: inline;
+				}
+			}
+		</style>
+	</head>
+	<body onclick="closeNav()">
+		<div class="page-left">
+			<nav>
+				<a href="/" id="logo"><h1>Tyson Mowing</h1></a>
+				<a href="#menu" onclick="document.body.classList.toggle('expand-nav')"
+					>☰</a
+				>
+				<a href="/login">Login</a>
+			</nav>
+			<main>Hello</main>
+		</div>
+		<div class="page-right">
+			<h2>Menu <span id="closeMenu">X</span></h2>
+			<hr />
+			<a href="/about">About</a>
+			<a href="/services">Services</a>
+			<a href="/contact">Contact</a>
+			<a href="/login">Login</a>
+		</div>
+
+		<script>
+			function closeNav(e) {
+				e = window.event || e;
+				if (document.body === e.target) {
+					document.body.classList.remove("expand-nav");
+				}
+			}
+		</script>
+	</body>
+</html>
