@@ -6,6 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Tyson Mowing</title>
 
+		<script
+			src="https://kit.fontawesome.com/b02a1c9014.js"
+			crossorigin="anonymous"
+		></script>
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 
@@ -40,8 +44,10 @@
 				box-shadow: 5px 5px 15px 3px #00000055;
 			}
 			.page-right {
+				opacity: 0;
 				width: 0;
 				min-width: 0;
+				white-space: nowrap;
 			}
 			.page-right hr {
 				border: 1px solid black;
@@ -50,11 +56,16 @@
 				display: block;
 				text-decoration: none;
 				color: black;
-				padding: 10px 15px;
+				padding: 20px 15px;
 				font-size: 20px;
 			}
 			.page-right a:hover {
 				background-color: #ffffff55;
+			}
+			.page-right a i {
+				float: right;
+				vertical-align: middle;
+				line-height: 24px;
 			}
 			.page-left {
 				background-color: yellowgreen;
@@ -68,6 +79,7 @@
 				background-color: #ffffff22;
 				min-width: 20%;
 				padding: 20px;
+				opacity: 1;
 			}
 			body.expand-nav .page-right:hover {
 				background-color: #ffffff66;
@@ -75,11 +87,12 @@
 			#closeMenu {
 				display: none;
 				float: right;
-				padding: 20px;
-				border-radius: 50%;
+				padding: 0 10px;
+				transition: color 0.5s ease-in-out;
 			}
 			#closeMenu:hover {
-				background-color: #ffffff66;
+				color: white;
+				cursor: pointer;
 			}
 
 			/* NAVBAR */
@@ -90,6 +103,8 @@
 				vertical-align: middle;
 				font-size: 20px;
 				position: fixed;
+
+				box-shadow: 5px 5px 15px #00000022;
 			}
 			nav h1 {
 				font-size: inherit;
@@ -114,7 +129,7 @@
 				padding: 20px;
 			}
 
-			@media (max-width: 768px) {
+			@media (max-width: 600px) {
 				body.expand-nav .page-right {
 					position: fixed;
 					right: 0;
@@ -127,7 +142,7 @@
 				body.expand-nav .page-right:hover {
 					background-color: rgb(108, 150, 24);
 				}
-				#closeMenu {
+				body.expand-nav #closeMenu {
 					display: inline;
 				}
 			}
@@ -145,12 +160,23 @@
 			<main>Hello</main>
 		</div>
 		<div class="page-right">
-			<h2>Menu <span id="closeMenu">X</span></h2>
+			<h2>
+				Tyson Mowing - Menu
+				<span
+					id="closeMenu"
+					onclick="document.body.classList.remove('expand-nav')"
+					>&#x2715;</span
+				>
+			</h2>
 			<hr />
-			<a href="/about">About</a>
-			<a href="/services">Services</a>
-			<a href="/contact">Contact</a>
-			<a href="/login">Login</a>
+			<a href="/about">About<i class="fa-solid fa-circle-info"></i></a>
+			<a href="/services"
+				>Services<i class="fa-solid fa-handshake-simple"></i>
+			</a>
+			<a href="/contact">Contact <i class="fa-solid fa-phone"></i></a>
+			<a href="/login">Login <i class="fa-solid fa-circle-user"></i></a>
+			<a href="/dashboard">Dashboard <i class="fa-solid fa-chart-line"></i></a>
+			<a href="/calendar">Calendar <i class="fa-solid fa-calendar-day"></i></a>
 		</div>
 
 		<script>
