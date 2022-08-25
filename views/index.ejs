@@ -16,6 +16,7 @@
 			/* Full Screen Nav */
 			html {
 				height: 100%;
+        overflow: hidden;
 			}
 			body {
 				background: linear-gradient(rgb(0, 0, 109), rgb(30, 30, 255));
@@ -28,7 +29,8 @@
 				transition: all 0.5s ease-in-out;
 				perspective: 2000px;
 				font-family: "Raleway", sans-serif;
-
+        position: relative;
+        
 				display: flex;
 				align-items: stretch;
 				justify-content: space-between;
@@ -41,7 +43,7 @@
 			.page-right {
 				transition: all 0.5s ease-in-out;
 				flex: 0;
-				box-shadow: 5px 5px 15px 3px #00000055;
+				box-shadow: 5px 5px 15px 3px #00000044;
 			}
 			.page-right {
 				opacity: 0;
@@ -68,7 +70,9 @@
 				line-height: 24px;
 			}
 			.page-left {
-				background-color: yellowgreen;
+				background-color: #eee;
+        overflow: auto;
+        max-height: 100vh;
 				flex: 1;
 			}
 			body.expand-nav .page-left {
@@ -103,9 +107,18 @@
 				vertical-align: middle;
 				font-size: 20px;
 				position: fixed;
-
-				box-shadow: 5px 5px 15px #00000022;
+        top: 0;
+        
+        transition: background-color 0.5s ease-in-out;;
+				box-shadow: 5px 5px 5px #0000001A;
+        z-index: 9;
 			}
+      nav:hover {
+				background-color: #ffffffaa;
+			}
+      nav.scrolled {
+				background-color: #ffffff11;
+      }
 			nav h1 {
 				font-size: inherit;
 				display: inline;
@@ -126,9 +139,54 @@
 			/* Main page */
 			main {
 				margin-top: 50px;
-				padding: 20px;
 			}
+      
+      .hero {
+        width: calc(100% - 100px);
+        height: 70vh;
+        display: flex;
+        padding: 0 50px;
+      }
+      .hero .hero-left {
+        flex: 1;
+        position: relative;
 
+      }
+      .hero .text {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .hero h2 {
+        font-weight: bold;
+        font-size: 80px;
+        background: linear-gradient(45deg, darkblue, red);
+        background-clip: text;
+        color: transparent;
+        -webkit-background-clip:text;
+      }
+      .hero .hero-right {
+        width: 35%;
+        position: relative;
+        background-image: url("https://cdn.glitch.global/452e9c24-5e53-41f7-95dc-2c56a0bea4e4/shere.png?v=1661440773111");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        
+        padding: 20px;
+      }
+      .hero img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) translateX(-10%);
+        width: 100%;
+        animation: rotateImage 5s linear infinite alternate;
+      }
+
+      @keyframes rotateImage {
+        from {transform: rotateY(-50deg) translateY(-50%) translateX(-10%);}
+        to {transform: rotateY(50deg) translateY(-50%) translateX(-10%);}
+      }
 			@media (max-width: 600px) {
 				body.expand-nav .page-right {
 					position: fixed;
@@ -145,6 +203,12 @@
 				body.expand-nav #closeMenu {
 					display: inline;
 				}
+        .hero {
+          flex-direction: column;
+        }
+        .hero .hero-left, .hero .hero-right {
+          width: 100%;
+        }
 			}
 		</style>
 	</head>
@@ -157,7 +221,23 @@
 				>
 				<a href="/login">Login</a>
 			</nav>
-			<main>Hello</main>
+			<main>
+        <div class="hero">
+          <div class="hero-left">
+            <div class="text">
+              <h2>
+              Local Lawns,<br>Local Prices
+            </h2>
+            </div>
+          </div>
+          <div class="hero-right">
+            <img class="mower" src="https://cdn.glitch.global/452e9c24-5e53-41f7-95dc-2c56a0bea4e4/lawnmower.png?v=1661440773228" alt="Lawn Mower">
+          </div>
+        </div>
+          hello
+     <h1 style="padding-top: 500px">hello</h1>
+ 
+      </main>
 		</div>
 		<div class="page-right">
 			<h2>
@@ -167,6 +247,7 @@
 					onclick="document.body.classList.remove('expand-nav')"
 					>&#x2715;</span
 				>
+        
 			</h2>
 			<hr />
 			<a href="/about">About<i class="fa-solid fa-circle-info"></i></a>
@@ -186,6 +267,11 @@
 					document.body.classList.remove("expand-nav");
 				}
 			}
+      document.body.getElementsByTagName("nav")[0].onscroll = function() {
+        if (window.pageYOffset) > 10 {
+          
+        }
+      }
 		</script>
 	</body>
 </html>
